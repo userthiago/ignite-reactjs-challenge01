@@ -38,15 +38,13 @@ export function TaskList() {
   function handleToggleTaskCompletion(id: number) {
     const newTasks = tasks;
     const index = tasks.findIndex(task => task.id === id);
-    newTasks[index].isComplete = newTasks[index].isComplete ? false : true;
+    newTasks[index].isComplete = !newTasks[index].isComplete;
     setTasks([...newTasks]);
   }
 
   function handleRemoveTask(id: number) {
-    const newTasks = tasks;
-    const index = tasks.findIndex(task => task.id === id);
-    newTasks.splice(index, 1);
-    setTasks([...newTasks]);
+    const filteredTasks = tasks.filter(task => task.id !== id);
+    setTasks(filteredTasks);
   }
 
   return (
